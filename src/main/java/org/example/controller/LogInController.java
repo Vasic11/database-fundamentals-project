@@ -3,14 +3,18 @@ package org.example.controller;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import org.example.model.LogInModel;
+import org.example.view.HomeView;
 import org.example.view.LogInView;
 import org.example.view.SignUpView;
 
 public class LogInController {
     private LogInView view;
+    private LogInModel model;
 
     public LogInController(LogInView view) {
         this.view=view;
+        model=new LogInModel();
         initListeners();
     }
 
@@ -27,7 +31,9 @@ public class LogInController {
             currStage.show();
         });
         view.getBtLogIn().setOnAction(event -> {
-           if(view.getTfUserName().getText().isEmpty() || view.getPfPassworf().getText().isEmpty()){
+            String username = view.getTfUserName().getText().trim();
+            String passwd = view.getPfPassworf().getText().trim();
+           if(username.isEmpty() || passwd.isEmpty()){
                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                errorAlert.setTitle("Greska pri popunjavanju Log In forme");
                errorAlert.setHeaderText("Proveri polja");
@@ -35,6 +41,30 @@ public class LogInController {
                errorAlert.showAndWait();
            }else{
                System.out.println("Dobro popunjena polja: "+view.getTfUserName().getText() + " " + view.getPfPassworf().getText());
+               boolean dobroUnetKorisnik = model.daLiKorisnikPostoji(username, passwd);
+               if(dobroUnetKorisnik){
+                   Alert errorAlert = new Alert(Alert.AlertType.INFORMATION);
+                   errorAlert.setTitle("Cestitamo");
+                   errorAlert.setHeaderText("Korisnik postoji");
+                   errorAlert.setContentText("Otvra se korinikov prozor");
+                   errorAlert.showAndWait();
+
+                   Stage currStage = (Stage) view.getBtLogIn().getScene().getWindow();
+
+                   HomeView homeView = new HomeView();
+                   HomeController homeController = new HomeController(homeView);
+
+                   Scene newScene = new Scene(homeView, 800, 600);
+                   currStage.setScene(newScene);
+                   currStage.setTitle("Home");
+                   currStage.show();
+               }else{
+                   Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                   errorAlert.setTitle("Greska pri popunjavanju Log In forme");
+                   errorAlert.setHeaderText("Proveri polja");
+                   errorAlert.setContentText("Niste dobro popunili sva polja");
+                   errorAlert.showAndWait();
+               }
            }
         });
     }
