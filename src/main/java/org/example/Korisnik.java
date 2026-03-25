@@ -4,13 +4,13 @@ public class Korisnik {
     private String userName;
     private String password;
     private String uloga;
-    private int id;
 
-    public Korisnik(String userName, String password,String uloga,int id) {
+
+    public Korisnik(String userName, String password,String uloga) {
         this.userName = userName;
         this.password = password;
         this.uloga = uloga;
-        this.id = id;
+
     }
 
     public String getUserName() {
@@ -34,10 +34,5 @@ public class Korisnik {
     public void setUloga(String uloga) {
         this.uloga = uloga;
     }
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
+
 }
