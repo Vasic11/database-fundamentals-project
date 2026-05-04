@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.example.model.LogInModel;
 import org.example.view.HomeView;
+import org.example.view.IstrazivacView;
 import org.example.view.LogInView;
 import org.example.view.SignUpView;
 
@@ -51,10 +52,12 @@ public class LogInController {
 
                    Stage currStage = (Stage) view.getBtLogIn().getScene().getWindow();
 
-                   HomeView homeView = new HomeView();
-                   HomeController homeController = new HomeController(homeView);
+                   //HomeView homeView = new HomeView();
+                   //HomeController homeController = new HomeController(homeView);
 
-                   Scene newScene = new Scene(homeView, 800, 600);
+                   IstrazivacView istrazivacView = new IstrazivacView();
+                   IstrazivacController istrazivacController = new IstrazivacController(istrazivacView);
+                   Scene newScene = new Scene(istrazivacView, 800, 600);
                    currStage.setScene(newScene);
                    currStage.setTitle("Home");
                    currStage.show();

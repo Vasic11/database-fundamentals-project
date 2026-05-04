@@ -4,11 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.controller.LogInController;
-import org.example.controller.SignUpController;
-import org.example.view.DeleteAccView;
 import org.example.view.LogInView;
-import org.example.view.SignUpView;
-import org.example.view.UpdateInformationView;
 
 public class App extends Application {
     public static void main(String[] args) {

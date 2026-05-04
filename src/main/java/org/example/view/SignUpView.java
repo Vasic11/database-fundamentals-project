@@ -21,8 +21,8 @@ public class SignUpView extends GridPane {
     }
 
     private void addElemets() {
-        this.addColumn(0,lbUserName,lbPassworf,lbPassword2,lbRole,create);
-        this.addColumn(1,tfUserName,pfPassworf,pfPassword2,cbRole,back);
+        this.addColumn(0,lbUserName,lbPassworf,lbPassword2,create);
+        this.addColumn(1,tfUserName,pfPassworf,pfPassword2,back);
         this.setVgap(10);
         this.setHgap(10);
         this.setAlignment(Pos.CENTER);
@@ -34,10 +34,6 @@ public class SignUpView extends GridPane {
         lbUserName = new Label("Username");
         lbPassworf = new Label("Password");
         lbPassword2 = new Label("Confirm Password");
-        lbRole = new Label("Role");
-        cbRole = new ComboBox<>();
-        cbRole.getItems().addAll("Istrazivac","Administrator","Eksterni korisnik");
-        cbRole.getSelectionModel().selectFirst();
         tfUserName = new TextField();
         pfPassworf = new PasswordField();
         pfPassword2 = new PasswordField();
