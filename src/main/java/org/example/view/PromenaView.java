@@ -39,7 +39,7 @@ public class PromenaView extends GridPane {
         statusLayout.setAlignment(Pos.CENTER_LEFT);
         this.add(statusLayout, 0, 1);
         // Ovde ćemo dodati statuse (ovo možeš kasnije puniti i iz baze)
-        comboStatusi.getItems().addAll("Planirano", "Zapoceto", "Otkazano", "Zavrseno uspesno", "Zavrseno neuspenso");
+        comboStatusi.getItems().addAll("Planirano", "Zapoceto", "Otkazano", "Zavrseno uspesno", "Zavrseno neuspesno");
         comboStatusi.setPromptText("Izaberi...");
         this.add(btnPromeni, 1, 1);
         this.add(btnBack, 0, 2);
