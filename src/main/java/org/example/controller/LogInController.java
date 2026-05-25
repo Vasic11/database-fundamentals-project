@@ -3,6 +3,7 @@ package org.example.controller;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import org.example.Config;
 import org.example.model.LogInModel;
 import org.example.view.HomeView;
 import org.example.view.LogInView;
@@ -43,6 +44,7 @@ public class LogInController {
                System.out.println("Dobro popunjena polja: "+view.getTfUserName().getText() + " " + view.getPfPassworf().getText());
                boolean dobroUnetKorisnik = model.daLiKorisnikPostoji(username, passwd);
                if(dobroUnetKorisnik){
+                   Config.connect("localhost", "3306", "projekat_baza", "root", "MikiSQL11");
                    Alert errorAlert = new Alert(Alert.AlertType.INFORMATION);
                    errorAlert.setTitle("Cestitamo");
                    errorAlert.setHeaderText("Korisnik postoji");
