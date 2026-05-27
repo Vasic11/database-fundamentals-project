@@ -15,10 +15,11 @@ public class IzradjeniDto {
             ResultSet resultSet = statement.executeQuery(query);
             List<IzradjeniDto> izradjeni = new ArrayList<>();
             while (resultSet.next()){
+                int idIzradjeni = resultSet.getInt("izvodjenje_id");
                 String eksperimentNazivIzradjeni = resultSet.getString("eksperiment_naziv");
                 String izvodjenjeStatusIzradjeni = resultSet.getString("izvodjenje_status");
                 Date izvodjenjeDatumIzradjeni = resultSet.getDate("izvodjenje_datum");
-                IzradjeniDto izradjeniDto = new IzradjeniDto(eksperimentNazivIzradjeni, izvodjenjeStatusIzradjeni, izvodjenjeDatumIzradjeni);
+                IzradjeniDto izradjeniDto = new IzradjeniDto(idIzradjeni, eksperimentNazivIzradjeni, izvodjenjeStatusIzradjeni, izvodjenjeDatumIzradjeni);
                 izradjeni.add(izradjeniDto);
             }
             return izradjeni;
@@ -26,16 +27,20 @@ public class IzradjeniDto {
             throw  new RuntimeException(e);
         }
     };
+    private final int idIzradjeni;
     private final String eksperimentNazivIzradjeni;
     private final String izvodjenjeStatusIzradjeni;
     private final Date izvodjenjeDatumIzradjeni;
 
-    public IzradjeniDto(String eksperimentNazivIzradjeni, String izvodjenjeStatusIzradjeni, Date izvodjenjeDatumIzradjeni) {
+    public IzradjeniDto(int idIzradjeni, String eksperimentNazivIzradjeni, String izvodjenjeStatusIzradjeni, Date izvodjenjeDatumIzradjeni) {
+        this.idIzradjeni = idIzradjeni;
         this.eksperimentNazivIzradjeni = eksperimentNazivIzradjeni;
         this.izvodjenjeStatusIzradjeni = izvodjenjeStatusIzradjeni;
         this.izvodjenjeDatumIzradjeni = izvodjenjeDatumIzradjeni;
     }
-
+    public  int getIdIzradjeni() {
+        return idIzradjeni;
+    }
     public String getEksperimentNazivIzradjeni() {
         return eksperimentNazivIzradjeni;
     }

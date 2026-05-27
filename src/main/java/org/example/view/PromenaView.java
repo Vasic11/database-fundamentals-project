@@ -5,10 +5,13 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import org.example.Config;
+import org.example.model.PromenaStatusaDto;
+import org.example.view.tables.PromenaStatusaTabela;
 
 public class PromenaView extends GridPane {
 
-    private TableView<Object> tabela;
+    private TableView<PromenaStatusaDto> tabela;
     private ComboBox<String> comboStatusi;
     private Button btnPromeni;
     private Button btnBack;
@@ -26,12 +29,12 @@ public class PromenaView extends GridPane {
         this.setHgap(15);
         this.setVgap(15);
         this.setAlignment(Pos.CENTER);
-        TableColumn<Object, String> colPodatak = new TableColumn<>("Podatak");
-        TableColumn<Object, String> colTrenutniStatus = new TableColumn<>("Trenutni Status");
-        colPodatak.setPrefWidth(200);
-        colTrenutniStatus.setPrefWidth(150);
+        //TableColumn<Object, String> colPodatak = new TableColumn<>("Podatak");
+        //TableColumn<Object, String> colTrenutniStatus = new TableColumn<>("Trenutni Status");
+        //colPodatak.setPrefWidth(200);
+        //colTrenutniStatus.setPrefWidth(150);
 
-        tabela.getColumns().addAll(colPodatak, colTrenutniStatus);
+        //tabela.getColumns().addAll(colPodatak, colTrenutniStatus);
 
         // Dodajemo tabelu u grid: kolona 0, red 0, širina 2 kolone
         this.add(tabela, 0, 0, 2, 1);
@@ -39,14 +42,14 @@ public class PromenaView extends GridPane {
         statusLayout.setAlignment(Pos.CENTER_LEFT);
         this.add(statusLayout, 0, 1);
         // Ovde ćemo dodati statuse (ovo možeš kasnije puniti i iz baze)
-        comboStatusi.getItems().addAll("Planirano", "Zapoceto", "Otkazano", "Zavrseno uspesno", "Zavrseno neuspesno");
+        comboStatusi.getItems().addAll("planirano", "zapoceto", "otkazano", "zavrseno_uspesno", "zavrseno_neuspesno");
         comboStatusi.setPromptText("Izaberi...");
         this.add(btnPromeni, 1, 1);
         this.add(btnBack, 0, 2);
     }
 
     private void initElements() {
-        tabela = new TableView<>();
+        tabela = new PromenaStatusaTabela(PromenaStatusaDto.readPromenaStatusaTabela(Config.getConnection()));
         // 2. Labela i ComboBox (Padajući meni)
 
         comboStatusi = new ComboBox<>();
@@ -60,7 +63,11 @@ public class PromenaView extends GridPane {
     }
 
     // Getteri za kontroler
-    public TableView<Object> getTabela() {
+    //public TableView<Object> getTabela() {
+    //    return tabela;
+    //}
+
+    public TableView<PromenaStatusaDto> getTabela() {
         return tabela;
     }
 

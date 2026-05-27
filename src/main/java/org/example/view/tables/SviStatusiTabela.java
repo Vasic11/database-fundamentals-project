@@ -3,7 +3,6 @@ package org.example.view.tables;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.example.model.PlaniraniDto;
 import org.example.model.SviStatusiDto;
 import javafx.scene.control.TableView;
 import java.util.Date;
