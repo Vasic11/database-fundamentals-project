@@ -5,10 +5,13 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import org.example.Config;
+import org.example.model.BrisanjeDto;
+import org.example.view.tables.BrisanjeTabela;
 
 public class BrisanjeView extends GridPane {
 
-    private TableView<Object> tabelaSesija;
+    private TableView<BrisanjeDto> tabelaSesija;
     private Button btnObrisi;
     private Button btnBack;
     private Label lblInfo;
@@ -26,21 +29,21 @@ public class BrisanjeView extends GridPane {
         this.add(lblNaslov, 0, 0, 2, 1);
 
         // 2. Tabela sa sesijama
-        tabelaSesija = new TableView<>();
+        tabelaSesija = new BrisanjeTabela(BrisanjeDto.readAllDto(Config.getConnection()));
 
         // Kolone prema tekstu zadatka
-        TableColumn<Object, String> colEksperiment = new TableColumn<>("Eksperiment");
-        TableColumn<Object, String> colLaboratorija = new TableColumn<>("Laboratorija");
-        TableColumn<Object, String> colDatum = new TableColumn<>("Datum");
-        TableColumn<Object, String> colPocetak = new TableColumn<>("Početak");
-        TableColumn<Object, String> colKraj = new TableColumn<>("Kraj");
+        //TableColumn<Object, String> colEksperiment = new TableColumn<>("Eksperiment");
+        //TableColumn<Object, String> colLaboratorija = new TableColumn<>("Laboratorija");
+        //TableColumn<Object, String> colDatum = new TableColumn<>("Datum");
+        //TableColumn<Object, String> colPocetak = new TableColumn<>("Početak");
+        //<Object, String> colKraj = new TableColumn<>("Kraj");
 
         // Postavljanje širina (opciono)
-        colEksperiment.setPrefWidth(150);
-        colDatum.setPrefWidth(100);
+        //colEksperiment.setPrefWidth(150);
+        //colDatum.setPrefWidth(100);
 
-        tabelaSesija.getColumns().addAll(colEksperiment, colLaboratorija, colDatum, colPocetak, colKraj);
-        tabelaSesija.setPlaceholder(new Label("Nema zakazanih sesija za prikaz."));
+        //tabelaSesija.getColumns().addAll(colEksperiment, colLaboratorija, colDatum, colPocetak, colKraj);
+        //tabelaSesija.setPlaceholder(new Label("Nema zakazanih sesija za prikaz."));
 
         // Dodavanje tabele u grid
         this.add(tabelaSesija, 0, 1, 2, 1);
@@ -63,7 +66,7 @@ public class BrisanjeView extends GridPane {
     }
 
     // Getteri za Controller
-    public TableView<Object> getTabelaSesija() {
+    public TableView<BrisanjeDto> getTabelaSesija() {
         return tabelaSesija;
     }
 
